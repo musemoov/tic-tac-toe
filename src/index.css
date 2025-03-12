@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: 'Roboto Slab', sans-serif;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
   line-height: 1.5;
-
   color: #ebe7ef;
 
   font-synthesis: none;
@@ -18,14 +18,15 @@ html {
 }
 
 body {
-  background: radial-gradient(
+  background:  /*radial-gradient(
       circle at top,
-      rgba(241, 210, 70, 0.98),
-      rgba(250, 176, 103, 0.87)
-    ),
-    url('bg-pattern-dark.png');
-  background-repeat: repeat;
-  background-size: 100% 100%, 30% 30%, 100% 100%;
+      rgba(189, 179, 227, 0.98),
+      rgba(218, 160, 198, 0.87)
+    ), */
+     url('background_image.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* 전체 이미지가 보이도록 조정 */
+  background-position: center; /* 이미지 중앙 정렬 */
   min-height: 110rem;
 }
 
@@ -41,20 +42,27 @@ header img {
 }
 
 h1 {
-  font-family: 'Caprasimo', cursive;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 400;
   font-size: 3rem;
   margin: 0 auto 3rem auto;
-  color: #3f3b00;
+  color: #ffffff;
 }
 
 #game-container {
   max-width: 45rem;
   margin: 3rem auto;
   padding: 2rem;
-  border-radius: 6px;
-  background: linear-gradient(#383624, #282617);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  /* background: linear-gradient(#383624, #282617); */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+  background: rgba(255, 255, 255, 0.1); /* 반투명 배경 */
+  backdrop-filter: blur(5px); /* 배경 블러 효과 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
+  /* box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8); 항상 글로우 효과 */
   position: relative;
+  /* animation: pulse 3s infinite ease-in-out; */
 }
 
 #players {
@@ -75,20 +83,20 @@ h1 {
 }
 
 #players.highlight-player li.active {
-  border-color: #f6e35a;
+  border-color: #e292eb;
   animation: pulse 2s infinite ease-in-out;
 }
 
 #players.highlight-player li.active .player-name,
 #players.highlight-player li.active .player-symbol {
-  color: #f6e35a;
+  color: #ffffff;
 }
 
 #players button {
   width: 3rem;
   border: none;
   background: none;
-  color: #c3ba78;
+  color: #ffffff;
   font-size: 0.9rem;
   cursor: pointer;
   transition: color 0.2s;
@@ -97,7 +105,7 @@ h1 {
 }
 
 #players button:hover {
-  color: #f8ca31;
+  color: #b079ce;
 }
 
 .player {
@@ -111,7 +119,7 @@ h1 {
   display: inline-block;
   width: 10rem;
   font-size: 1rem;
-  color: #e1dec7;
+  color: #e1c7e0;
   text-transform: uppercase;
   margin: 0;
   padding: 0.5rem;
@@ -127,7 +135,7 @@ h1 {
   border: none;
   padding: 0.5rem;
   animation: pulse-text 2s infinite;
-  background-color: #46432f;
+  background-color: #d1b4d2;
   text-align: center;
   text-transform: uppercase;
 }
@@ -135,7 +143,7 @@ h1 {
 .player-symbol {
   margin-left: 1rem;
   font-size: 1rem;
-  color: #e1dec7;
+  color: #e1c7e0;
 }
 
 ol {
@@ -182,12 +190,22 @@ ol {
   width: 8rem;
   height: 8rem;
   border: none;
-  background: #aca788;
-  color: #3f3b00;
+  /* background: #aca788;
+  color: #3f3b00; */
+  background: rgba(255, 255, 255, 0.071); /* 반투명 배경 */
+  color: #ffffff;
   font-size: 5rem;
   cursor: pointer;
-  font-family: 'Caprasimo', cursive;
+  font-family: "Orbitron", sans-serif;
   padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px); /* 버튼 내 블러 효과 */
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
+  transition: box-shadow 0.1s ease; /* 부드러운 전환 효과 */
+}
+
+#game-board button:hover {
+  box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8); /* 호버 시 빛나는 효과 */
 }
 
 #game-over {
@@ -196,26 +214,27 @@ ol {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 999; /* 버튼 위로 올라오게 높은 z-index 값 추가 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(40, 38, 23, 0.95);
+  background-color: rgba(82, 37, 84, 0.462);
   animation: pop-in 0.5s cubic-bezier(0.68, -0.55, 0.65, 0.52) forwards;
 }
 
 #game-over h2 {
-  font-family: 'Caprasimo', cursive;
+  font-family: "Orbitron", sans-serif;
   font-size: 4rem;
   text-align: center;
-  color: #fcd256;
+  color: #ffe7f1;
   margin: 0;
 }
 
 #game-over p {
   font-size: 2rem;
   text-align: center;
-  color: #e1dec7;
+  color: #ffe5f0;
 }
 
 #game-over button {
@@ -223,25 +242,25 @@ ol {
   margin: 0 auto;
   font-size: 1.5rem;
   background: none;
-  border: 2px solid #fcd256;
-  color: #fcd256;
+  border: 2px solid #fadfeb;
+  color: #fadfeb;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s, color 0.2s;
-  box-shadow: 0 0 8px rgba(255, 187, 0, 0.4);
+  box-shadow: 0 0 8px rgba(255, 0, 119, 0.4);
 }
 
 #game-over button:hover {
-  background: #fcd256;
-  color: #3f3b00;
+  background: #f5d9ee;
+  color: #3f002d;
   transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(255, 187, 0, 0.8);
+  box-shadow: 0 0 20px rgba(255, 165, 233, 0.8);
 }
 
 #log {
   max-width: 20rem;
-  color: #3f3b00;
+  color: #ffffff;
   list-style: none;
   margin: 2rem auto;
   padding: 0;
@@ -285,6 +304,10 @@ ol {
   margin-top: 1.5rem;
 }
 
+.Edit-Save {
+  font-weight: bold;
+}
+
 @keyframes slide-in-from-left {
   0% {
     opacity: 0;
@@ -301,7 +324,7 @@ ol {
     color: #e1dec7;
   }
   50% {
-    color: #9f9d83;
+    color: #9a839f;
   }
   100% {
     color: #e1dec7;
@@ -320,7 +343,7 @@ ol {
   }
 }
 
-@keyframes pulse {
+/* @keyframes pulse {
   0% {
     border-color: #f6e35a;
     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0.4);
@@ -333,7 +356,37 @@ ol {
     border-color: #f6e35a;
     box-shadow: 0 0 0 0 rgba(246, 227, 90, 0);
   }
+} */
+
+@keyframes pulse {
+  0% {
+    border-color: #ffffff22;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    border-color: #ffffff8d;
+    box-shadow: 0 0 0 0.5rem rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
 }
+
+/* @keyframes pulsePink {
+  0% {
+    border-color: rgba(189, 179, 227, 0.98);
+    box-shadow: 0 0 0 0 rgba(189, 179, 227, 0.5);
+  }
+  50% {
+    border-color: rgba(189, 179, 227, 0.98);
+    box-shadow: 0 0 15px 5px rgba(189, 179, 227, 0.5);
+  }
+  100% {
+    border-color: rgba(189, 179, 227, 0.98);
+    box-shadow: 0 0 15px 5px rgba(189, 179, 227, 0.5);
+  }
+} */
 
 /* Fancy animation for showing the "Game Over" element */
 @keyframes pop-in {
@@ -349,3 +402,4 @@ ol {
     transform: scale(1);
   }
 }
+
