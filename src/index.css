@@ -23,7 +23,7 @@ body {
       rgba(189, 179, 227, 0.98),
       rgba(218, 160, 198, 0.87)
     ), */
-     url('background_image.png');
+     url('/public/background_image.png');
   background-repeat: no-repeat;
   background-size: cover; /* 전체 이미지가 보이도록 조정 */
   background-position: center; /* 이미지 중앙 정렬 */
